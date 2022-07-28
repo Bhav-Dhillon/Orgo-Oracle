@@ -8,47 +8,140 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: white;
-}
-/* :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-} */
+  background: #259872;
+  color: white;
+  font-family: quicksand;
 
-#display3D {
-  position: absolute;
-  top: 10%; 
-  height: 400px; 
-  width: 400px; 
-  background-color: #259872;
-  /* border: 1px solid blue; */
 }
+
+.header--wrapper {
+  position: absolute;
+  top: 0;
+  height: 10%; 
+  width: 100%; 
+  font-family: quicksand;
+
+  display: flex; 
+  align-items: center;
+  justify-content: center;  
+  /* border: 1px solid blue;  */
+}
+
+.header--wrapper > h1 {
+  font-weight: 350;
+  font-size: 2.7rem;
+}
+
+.logoImg--wrapper {
+  width: 33px; 
+  max-width: 50px;
+  display: flex;
+  flex-grow: 1;
+  margin-right: 15px;
+  /* border: 1px solid red; */
+}
+
+
+.logoImg{
+  width: 100%; 
+  height: auto;
+}
+
+
+
 .search--wrapper{
-  position: absolute; 
+
   height: 10%; 
   width: 100%;
-  top: 0; 
-  border: 1px solid red;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+
+  /* border: 1px solid red; */
 }
+
 .search--input {
-  width: 200px; 
+  width: 325px; 
   height: 30px;
-  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  /* background-color: #e8e8e8; */
+  /* text-align: center; */
+  font-size: 1.1rem;
+  font-size: medium;
+  /* font-weight: bold; */
 }
+
+.search--input:focus {
+  outline-color: white;
+  place-content: "Enter your message!";
+}
+
+.searchBtn {
+  width: 90px; 
+  height: 25px;
+  border-radius: 15px;
+  border: none;
+
+}
+
+
+
+.main--wrapper {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  top: 10%;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  overflow: scroll ;
+
+  /* border: 1px solid red; */
+
+}
+
+
+#display3D {
+  height: 300px; 
+  width: 300px; 
+  /* background-color: #259872; */
+  margin: 30px;
+  border-radius: 50px;
+  background: #259872;
+  box-shadow:  20px 20px 60px #1f8161,
+              -20px -20px 60px #2baf83;
+
+  /* border: 1px solid blue; */
+}
+
+#display2D {
+  /* position: absolute;
+  top: 65%;  */
+  height: 250px; 
+  width: 250px; 
+  margin: 30px;
+  /* background-color: #259872; */
+  border-radius: 50px;
+  background: #259872;
+  box-shadow:  20px 20px 60px #1f8161,
+              -20px -20px 60px #2baf83;
+  /* border: 1px solid blue; */
+}
+
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;

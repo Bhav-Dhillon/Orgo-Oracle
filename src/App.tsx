@@ -1,21 +1,27 @@
 // @ts-nocheck
-import { useState } from 'react'
-import ChemLib from './lib/ChemDoodleWeb.js'
+import { useState } from 'react';
+import ChemLib from './lib/ChemDoodleWeb.js';
+import logoImg from './assets/logoImg.png';
 
 function App() {
   const [searchText, setSearchText] = useState({
     textBox: "",
   })
-  let reader = new FileReader();
-  let molecule;
+  console.log(searchText.textBox);
+  let reader3d = new FileReader();
+  let reader2d = new FileReader();
+
+  let molecule3d;
+  let molecule2d;
+
 
   function Display2D(_2Dmolecule){
-    let display2D = new ChemLib.TransformCanvas('display2D', 400, 400, true);
+    let display2D = new ChemLib.TransformCanvas('display2D', 250, 250, true);
     display2D.styles.atoms_HBlack_2D = false;
     display2D.styles.atoms_color = 'white'
     display2D.styles.bonds_color = "white"
     display2D.styles.atoms_font_size_2D = 8;
-    display2D.styles.bondLength_2D = 40;
+    // display2D.styles.bondLength_2D = 40;
     display2D.styles.atoms_displayTerminalCarbonLabels_2D = true;
     display2D.styles.backgroundColor = '#259872';
     let mol = ChemLib.readMOL(_2Dmolecule);
@@ -24,7 +30,7 @@ function App() {
   }
   
   function Display3D(_3Dmolecule){
-    let display3D = new ChemLib.TransformCanvas('display3D', 400, 400, true);
+    let display3D = new ChemLib.TransformCanvas('display3D', 300, 300, true);
     display3D.styles.atoms_circles_2D = true;
     display3D.styles.atoms_useJMOLColors = true;
     display3D.styles.atoms_HBlack_2D = false;
@@ -41,7 +47,7 @@ function App() {
   }
 
   function BallAndStick(){
-    let transformBallAndStick = new ChemLib.TransformCanvas3D('transformBallAndStick', 400, 400);
+    let transformBallAndStick = new ChemLib.TransformCanvas3D('transformBallAndStick', 300, 300);
     transformBallAndStick.styles.set3DRepresentation('Ball and Stick');
     transformBallAndStick.styles.backgroundColor = 'white';
     transformBallAndStick.styles.atoms_sphereDiameter_3D = 8;
@@ -71,34 +77,59 @@ function App() {
     fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${searchedString}/SDF?record_type=3d`)
       .then(res => { return res.blob() })
       .then(data => {
-        reader.readAsText(data);
-        reader.onload = function() {
-          molecule = reader.result;
-          console.log(molecule);
-          Display3D(molecule)
+        reader3d.readAsText(data);
+        reader3d.onload = function() {
+          molecule3d = reader3d.result;
+          // console.log(molecule);
+          Display3D(molecule3d);
+        };
+      })
+
+    fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${searchedString}/SDF?record_type=2d`)
+      .then(res => { return res.blob() })
+      .then(data => {
+        reader2d.readAsText(data);
+        reader2d.onload = function() {
+          molecule2d = reader2d.result;
+          // console.log(molecule);
+          Display2D(molecule2d);
         };
       })
   }
 
   return (
     <div className="App">
-      <div className='search--wrapper'>
-        <input
-          type="text"
-          placeholder="Search for a compound"
-          className="search--input"
-          name="textBox"
-          onChange={handleText}
-          value={searchText.textBox}
-          />
-              
-        <button onClick={() => { handleSearch(searchText.textBox) }}>
-            Search!
-        </button>
-      </div>
+      <header className='header--wrapper'>
+        <div className='logoImg--wrapper'>
+          <img className='logoImg' src={logoImg}/>
+        </div>
+        <h1 className='logoName'>Orgo Oracle</h1>
+      </header>
 
-      <canvas id='display3D'>
-      </canvas>
+
+
+
+      <div className='main--wrapper'>
+        <div className='search--wrapper'>
+          <input
+            type="text"
+            placeholder="Search for a compound..."
+            className="search--input"
+            name="textBox"
+            onChange={handleText}
+            value={searchText.textBox}
+            />
+                
+          <button className='searchBtn' onClick={() => { handleSearch(searchText.textBox) }}>
+              Search
+          </button>
+        </div>
+        <canvas id='display2D'>
+        </canvas>
+        <canvas id='display3D'>
+        </canvas>      
+
+      </div>
     </div>
   )
 }
