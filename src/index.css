@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+/* :root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+} */
+
+#display3D {
+  position: absolute;
+  top: 10%; 
+  height: 400px; 
+  width: 400px; 
+  background-color: #259872;
+  /* border: 1px solid blue; */
+}
+.search--wrapper{
+  position: absolute; 
+  height: 10%; 
+  width: 100%;
+  top: 0; 
+  border: 1px solid red;
+}
+.search--input {
+  width: 200px; 
+  height: 30px;
+  font-size: 1rem;
+}
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+

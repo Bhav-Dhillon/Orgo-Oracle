@@ -1,0 +1,15 @@
+// Property table for asprin
+// Returned from this api call: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/asprin/property/Title,MolecularFormula,MolecularWeight,IUPACName/JSON
+{
+    "PropertyTable": {
+        "Properties": [
+            {
+                "Title": "Aspirin",
+                "IUPACName": "2-acetyloxybenzoic acid",
+                "CID": 2244,
+                "MolecularFormula": "C9H8O4",
+                "MolecularWeight": "180.16"
+            }
+        ]
+    }
+}
