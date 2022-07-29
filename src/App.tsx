@@ -14,14 +14,15 @@ function App() {
   let molecule3d;
   let molecule2d;
 
+  
+
 
   function Display2D(_2Dmolecule){
-    let display2D = new ChemLib.TransformCanvas('display2D', 250, 250, true);
+    let display2D = new ChemLib.TransformCanvas('display2D', 200, 200, true);
     display2D.styles.atoms_HBlack_2D = false;
-    display2D.styles.atoms_color = 'white'
-    display2D.styles.bonds_color = "white"
+    display2D.styles.atoms_color = 'white';
+    display2D.styles.bonds_color = "white";
     display2D.styles.atoms_font_size_2D = 8;
-    // display2D.styles.bondLength_2D = 40;
     display2D.styles.atoms_displayTerminalCarbonLabels_2D = true;
     display2D.styles.backgroundColor = '#259872';
     let mol = ChemLib.readMOL(_2Dmolecule);
@@ -30,7 +31,7 @@ function App() {
   }
   
   function Display3D(_3Dmolecule){
-    let display3D = new ChemLib.TransformCanvas('display3D', 300, 300, true);
+    let display3D = new ChemLib.TransformCanvas('display3D', 330, 330, true);
     display3D.styles.atoms_circles_2D = true;
     display3D.styles.atoms_useJMOLColors = true;
     display3D.styles.atoms_HBlack_2D = false;
@@ -124,10 +125,15 @@ function App() {
               Search
           </button>
         </div>
-        <canvas id='display2D'>
-        </canvas>
-        <canvas id='display3D'>
-        </canvas>      
+        <div className='canvas--wrapper'>
+          <canvas id='display2D'>
+          </canvas>
+          <canvas id='display3D'>
+          </canvas>      
+        </div>
+        <div className='table--wrapper'>
+          <div className='table'></div>
+        </div>
 
       </div>
     </div>
