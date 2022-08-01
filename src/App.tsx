@@ -4,15 +4,63 @@ import ChemLib from './lib/ChemDoodleWeb.js';
 import logoImg from './assets/logoImg.png';
 
 function App() {
-  const [searchText, setSearchText] = useState({
-    textBox: "",
-  })
-  console.log(searchText.textBox);
+  // const [searchText, setSearchText] = useState({
+  //   textBox: "",
+  // })
+
+  function handleSearchClick(){
+
+    const search = document.querySelector(".search-box");
+    search?.classList.add("border-searching");
+    const si = document.querySelector(".search-icon");
+    si?.classList.add("si-rotate")
+
+
+    // $(document).ready(function () {
+    //   $("#search").focus(function () {
+    //     $(".search-box").addClass("border-searching");
+    //     $(".search-icon").addClass("si-rotate");
+    //   });
+    //   $("#search").blur(function () {
+    //     $(".search-box").removeClass("border-searching");
+    //     $(".search-icon").removeClass("si-rotate");
+    //   });
+    //   $("#search").keyup(function () {
+    //     if ($(this).val().length > 0) {
+    //       $(".go-icon").addClass("go-in");
+    //     } else {
+    //       $(".go-icon").removeClass("go-in");
+    //     }
+    //   });
+    //   $(".go-icon").click(function () {
+    //     $(".search-form").submit();
+    //   });
+    // });
+  }
+
+  function handleSearchReset(){
+    const search = document.querySelector(".search-box");
+    search?.classList.remove("border-searching");
+    const si = document.querySelector(".search-icon");
+    si?.classList.remove("si-rotate");
+  }
+
+
+
   let reader3d = new FileReader();
   let reader2d = new FileReader();
 
   let molecule3d;
   let molecule2d;
+  let size;
+
+  const mediaQuery = window.matchMedia('(min-width: 480px)')
+
+
+  if(mediaQuery.matches){
+    size = 350; 
+  }
+
 
   
 
@@ -31,7 +79,7 @@ function App() {
   }
   
   function Display3D(_3Dmolecule){
-    let display3D = new ChemLib.TransformCanvas('display3D', 330, 330, true);
+    let display3D = new ChemLib.TransformCanvas('display3D', size, size, true);
     display3D.styles.atoms_circles_2D = true;
     display3D.styles.atoms_useJMOLColors = true;
     display3D.styles.atoms_HBlack_2D = false;
@@ -111,7 +159,46 @@ function App() {
 
 
       <div className='main--wrapper'>
-        <div className='search--wrapper'>
+
+        <div className="container">
+          <div className="search-box">
+            <div className="search-icon"><i className="fa fa-search search-icon"></i></div>
+            <form action="" className="search-form">
+              <input 
+                type="text" 
+                placeholder="Search" 
+                id="search" 
+                autoComplete="off"
+                onFocus={() => handleSearchClick()}
+                onBlur={() => handleSearchReset()} />
+            </form>
+            <svg className="search-border" enableBackground="new 0 0 671 111" version="1.1" viewBox="0 0 671 111" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg">
+              <path className="border" d="m335.5 108.5h-280c-29.3 0-53-23.7-53-53s23.7-53 53-53h280"/>
+              <path className="border" d="m335.5 108.5h280c29.3 0 53-23.7 53-53s-23.7-53-53-53h-280"/>
+            </svg>
+          </div>
+
+          {/* <svg 
+            className="search-border" 
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg" 
+            xmlnsXlink="http://www.w3.org/1999/xlink" 
+            // xmlnsHref="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" 
+            x="0px" y="0px" 
+            viewBox="0 0 671 111" 
+            style="enable-background:new 0 0 671 111;"
+			      xmlSpace="preserve"
+          >
+            <path className="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
+            <path className="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
+          </svg> */}
+
+
+          <div className="go-icon"><i className="fa fa-arrow-right"></i></div>
+        </div>
+
+
+        {/* <div className='search--wrapper'>
           <input
             type="text"
             placeholder="Search for a compound..."
@@ -124,7 +211,17 @@ function App() {
           <button className='searchBtn' onClick={() => { handleSearch(searchText.textBox) }}>
               Search
           </button>
-        </div>
+        </div> */}
+
+
+
+
+
+
+
+
+
+
         <div className='canvas--wrapper'>
           <canvas id='display2D'>
           </canvas>
