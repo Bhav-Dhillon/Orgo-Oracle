@@ -4,9 +4,11 @@ import ChemLib from './lib/ChemDoodleWeb.js';
 import logoImg from './assets/logoImg.png';
 
 function App() {
-  // const [searchText, setSearchText] = useState({
-  //   textBox: "",
-  // })
+  const [searchText, setSearchText] = useState({
+    textBox: "",
+  })
+  // console.log(searchText.textBox);
+
 
   function handleSearchClick(){
 
@@ -14,28 +16,6 @@ function App() {
     search?.classList.add("border-searching");
     const si = document.querySelector(".search-icon");
     si?.classList.add("si-rotate")
-
-
-    // $(document).ready(function () {
-    //   $("#search").focus(function () {
-    //     $(".search-box").addClass("border-searching");
-    //     $(".search-icon").addClass("si-rotate");
-    //   });
-    //   $("#search").blur(function () {
-    //     $(".search-box").removeClass("border-searching");
-    //     $(".search-icon").removeClass("si-rotate");
-    //   });
-    //   $("#search").keyup(function () {
-    //     if ($(this).val().length > 0) {
-    //       $(".go-icon").addClass("go-in");
-    //     } else {
-    //       $(".go-icon").removeClass("go-in");
-    //     }
-    //   });
-    //   $(".go-icon").click(function () {
-    //     $(".search-form").submit();
-    //   });
-    // });
   }
 
   function handleSearchReset(){
@@ -44,6 +24,21 @@ function App() {
     const si = document.querySelector(".search-icon");
     si?.classList.remove("si-rotate");
   }
+
+  function handleGo(){
+    const goIcon = document.querySelector(".go-icon")
+    if (searchText.textBox.length > 0) {
+      goIcon?.classList.add("go-in")
+		} else {
+      goIcon?.classList.remove("go-in")
+		}
+  }
+
+  function handleText(event){
+    const { name, value } = event.target
+    setSearchText(prevText => ({ ...prevText, [name]: value }))
+  }
+
 
 
 
@@ -60,6 +55,7 @@ function App() {
   if(mediaQuery.matches){
     size = 350; 
   }
+  else size = 330;
 
 
   
@@ -117,10 +113,7 @@ function App() {
     });
   }
 
-  function handleText(event){
-      const { name, value } = event.target
-      setSearchText(prevText => ({ ...prevText, [name]: value }))
-  }
+
 
   function handleSearch(searchedString){
     fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${searchedString}/SDF?record_type=3d`)
@@ -166,35 +159,25 @@ function App() {
             <form action="" className="search-form">
               <input 
                 type="text" 
+                value={searchText.textBox}
+                name="textBox"
                 placeholder="Search" 
                 id="search" 
                 autoComplete="off"
                 onFocus={() => handleSearchClick()}
-                onBlur={() => handleSearchReset()} />
+                onBlur={() => handleSearchReset()}
+                onKeyUp={() => handleGo()}
+                onChange={handleText} />
             </form>
             <svg className="search-border" enableBackground="new 0 0 671 111" version="1.1" viewBox="0 0 671 111" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg">
               <path className="border" d="m335.5 108.5h-280c-29.3 0-53-23.7-53-53s23.7-53 53-53h280"/>
               <path className="border" d="m335.5 108.5h280c29.3 0 53-23.7 53-53s-23.7-53-53-53h-280"/>
             </svg>
+            <div className="go-icon"><i className="fa fa-arrow-right" onClick={() => { handleSearch(searchText.textBox) }}></i></div>
           </div>
 
-          {/* <svg 
-            className="search-border" 
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg" 
-            xmlnsXlink="http://www.w3.org/1999/xlink" 
-            // xmlnsHref="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" 
-            x="0px" y="0px" 
-            viewBox="0 0 671 111" 
-            style="enable-background:new 0 0 671 111;"
-			      xmlSpace="preserve"
-          >
-            <path className="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
-            <path className="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
-          </svg> */}
 
 
-          <div className="go-icon"><i className="fa fa-arrow-right"></i></div>
         </div>
 
 

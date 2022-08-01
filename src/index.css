@@ -137,6 +137,16 @@ body,
   height: 60px;
   border-radius: 120px;
   margin: 0 auto;
+
+  /* border: 2px solid yellow; */
+}
+
+.search-border {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: 60px;
+  /* border: 1px solid blue; */
 }
 
 .search-icon, .go-icon {
@@ -172,11 +182,13 @@ body,
   -moz-transform: rotate(100deg);
   -o-transform: rotate(100deg);
 }
+
+
 .go-icon {
 	color: white;
   right: 0;
   pointer-events: none;
-  font-size: 1.38em;
+  font-size: 1.2em;
   will-change: opacity;
   cursor: default;
   opacity: 0;
@@ -189,6 +201,7 @@ body,
   -moz-transition: opacity 190ms ease-out, transform 260ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
   -o-transition: opacity 190ms ease-out, transform 260ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
+
 .go-in {
   opacity: 1;
   pointer-events: all;
@@ -202,14 +215,7 @@ body,
   -moz-transition: opacity 190ms ease-out, transform 260ms 20ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
   -o-transition: opacity 190ms ease-out, transform 260ms 20ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
-.search-border {
-  /* position: relative;
-  top: 0; */
-  display: block;
-  width: 100%;
-  max-width: 360px;
-  height: 60px;
-}
+
 .border {
   fill: none;
   stroke: #FFFFFF;
@@ -334,7 +340,8 @@ button {
 @media screen and (min-width: 480px) {
   .header--wrapper > h1 {
     font-weight: 350;
-    font-size: 3.5rem;
+    font-size: 3.6rem;
+    letter-spacing: 6px;
   }
 
   .header--wrapper {
@@ -344,10 +351,10 @@ button {
 
   .logoImg--wrapper {
     width: 25px; 
-    max-width: 60px;
+    max-width: 65px;
     display: flex;
     flex-grow: 1;
-    margin-right: 15px;
+    margin-right: 20px;
     /* border: 1px solid red; */
   }
 
