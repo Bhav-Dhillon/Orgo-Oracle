@@ -5,29 +5,29 @@ import logoImg from './assets/logoImg.png';
 
 function App() {
   const [searchText, setSearchText] = useState({
-    textBox: "",
+    search: "",
   })
   // console.log(searchText.textBox);
 
 
   function handleSearchClick(){
 
-    const search = document.querySelector(".search-box");
-    search?.classList.add("border-searching");
+    const searchEl = document.querySelector(".search-box");
+    searchEl?.classList.add("border-searching");
     const si = document.querySelector(".search-icon");
     si?.classList.add("si-rotate")
   }
 
   function handleSearchReset(){
-    const search = document.querySelector(".search-box");
-    search?.classList.remove("border-searching");
+    const searchEl = document.querySelector(".search-box");
+    searchEl?.classList.remove("border-searching");
     const si = document.querySelector(".search-icon");
     si?.classList.remove("si-rotate");
   }
 
   function handleGo(){
     const goIcon = document.querySelector(".go-icon")
-    if (searchText.textBox.length > 0) {
+    if (searchText.search.length > 0) {
       goIcon?.classList.add("go-in")
 		} else {
       goIcon?.classList.remove("go-in")
@@ -55,14 +55,14 @@ function App() {
   if(mediaQuery.matches){
     size = 350; 
   }
-  else size = 330;
+  else size = 320;
 
 
   
 
 
   function Display2D(_2Dmolecule){
-    let display2D = new ChemLib.TransformCanvas('display2D', 200, 200, true);
+    let display2D = new ChemLib.TransformCanvas('display2D', size, size, true);
     display2D.styles.atoms_HBlack_2D = false;
     display2D.styles.atoms_color = 'white';
     display2D.styles.bonds_color = "white";
@@ -145,13 +145,7 @@ function App() {
         <div className='logoImg--wrapper'>
           <img className='logoImg' src={logoImg}/>
         </div>
-        <h1 className='logoName'>Orgo Oracle</h1>
-      </header>
-
-
-
-
-      <div className='main--wrapper'>
+        {/* <h1 className='logoName'>Orgo Oracle</h1> */}
 
         <div className="container">
           <div className="search-box">
@@ -159,8 +153,8 @@ function App() {
             <form action="" className="search-form">
               <input 
                 type="text" 
-                value={searchText.textBox}
-                name="textBox"
+                value={searchText.search}
+                name="search"
                 placeholder="Search" 
                 id="search" 
                 autoComplete="off"
@@ -173,13 +167,15 @@ function App() {
               <path className="border" d="m335.5 108.5h-280c-29.3 0-53-23.7-53-53s23.7-53 53-53h280"/>
               <path className="border" d="m335.5 108.5h280c29.3 0 53-23.7 53-53s-23.7-53-53-53h-280"/>
             </svg>
-            <div className="go-icon"><i className="fa fa-arrow-right" onClick={() => { handleSearch(searchText.textBox) }}></i></div>
+            <div className="go-icon"><i className="fa fa-arrow-right" onClick={() => { handleSearch(searchText.search) }}></i></div>
           </div>
-
-
-
         </div>
+      </header>
 
+
+
+
+      <div className='main--wrapper'>
 
         {/* <div className='search--wrapper'>
           <input
@@ -197,20 +193,13 @@ function App() {
         </div> */}
 
 
-
-
-
-
-
-
-
-
-        <div className='canvas--wrapper'>
+        <div className='search--and--canvas--wrapper'>
           <canvas id='display2D'>
           </canvas>
           <canvas id='display3D'>
           </canvas>      
         </div>
+
         <div className='table--wrapper'>
           <div className='table'></div>
         </div>
